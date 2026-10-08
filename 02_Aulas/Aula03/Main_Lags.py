@@ -13,7 +13,7 @@ import seaborn as sns
 
 # Parâmetros definidos pelo usuário
 H = 3         # Janela de histórico: utiliza variáveis dos instantes t, t-1, ..., t-H+1
-T = 1         # Horizonte de previsão: prever Q_Afluente no tempo t+T
+T = 7         # Horizonte de previsão: prever Q_Afluente no tempo t+T
 top_n = 6     # Número de variáveis mais correlacionadas a serem utilizadas
 
 # %%
@@ -21,7 +21,7 @@ top_n = 6     # Número de variáveis mais correlacionadas a serem utilizadas
 # Seção 2: Carregamento do dataset e criação da variável alvo
 # ================================================================
 # Carrega os dados e define a variável target como Q_Afluente deslocada em T passos no futuro
-df = pd.read_csv("dataset_filled.csv").drop(columns=["data"])
+df = pd.read_csv("series_preenchidas.csv").drop(columns=["data"])
 df["target"] = df["Q_Afluente"].shift(-T)
 df = df.dropna()  # Remove linhas com valores ausentes (causados pelo shift)
 
@@ -30,7 +30,7 @@ df = df.dropna()  # Remove linhas com valores ausentes (causados pelo shift)
 # Seção 3: Seleção das top-N variáveis com maior correlação com o alvo
 # ================================================================
 # Calcula a correlação de Pearson entre as variáveis exógenas e o alvo (target)
-exog_inputs = df.drop(columns=["Q_Afluente", "target"])
+exog_inputs = df.drop(columns=["target"])
 corr_matrix = pd.concat([exog_inputs, df["target"]], axis=1).corr()
 target_corr = corr_matrix["target"].drop("target").sort_values(ascending=False)
 top_features = target_corr.head(top_n).index.tolist()
