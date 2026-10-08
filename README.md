@@ -46,7 +46,11 @@ https://drive.google.com/file/d/1xuGr5_TwRo7rb1P5VVTuUmAl74K1GzI_/view?usp=drive
 
 ##  Link do Formulário de Avaliação 
 
+Inicial:
 https://forms.gle/NZpzYCzaddsqwyfx6
+
+Meio de Curso:
+https://forms.gle/npB27Ar4ovE3aw2v5
 
 ## Uso didático
 
